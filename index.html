@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Natasha Bag, applying for Executive Assistant to the CEO at Supabase.">
+<meta property="og:title" content="Natasha Bag for Supabase">
+<meta property="og:description" content="Sort a CEO inbox, see how I match the posting, and read how I would brief you.">
+<meta property="og:type" content="website">
+<title>Natasha Bag for Supabase</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a CRM opportunity record aimed at the Executive Assistant to the CEO role. Teal hero with record fields and a five-stage pipeline, then a playable demo (sort a made-up CEO inbox), a fit map against the posting with honest yes / partly / not yet chips, a sample briefing note, an objection log, an activity feed of real work, and a closing call to action. Peacock teal and marigold on cool chalk, aubergine text. */
+:root {
+  --bg: #F1EFE8;
+  --panel: #FBFAF6;
+  --ink: #3A1442;
+  --muted: #6A4F70;
+  --line: #D2D9D4;
+  --brand: #0B3F4A;
+  --on-brand: #FFEBC8;
+  --on-brand-soft: rgba(255, 235, 200, 0.78);
+  --brand-line: rgba(255, 235, 200, 0.24);
+  --teal: #0B3F4A;
+  --teal-soft: #DCEDE8;
+  --gold: #F2A900;
+  --gold-ink: #4A3000;
+  --gold-soft: #FCE9B0;
+  --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #071E24; --panel: #0D2F37; --ink: #F3DDF6; --muted: #C2A8CC; --line: #1B4750;
+    --brand: #0F4652; --on-brand: #FFEBC8; --on-brand-soft: rgba(255, 235, 200, 0.8); --brand-line: rgba(255, 235, 200, 0.22);
+    --teal: #7FD1C4; --teal-soft: #123F48; --gold: #FFC233; --gold-ink: #FFE18A; --gold-soft: #4A3A0A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #071E24; --panel: #0D2F37; --ink: #F3DDF6; --muted: #C2A8CC; --line: #1B4750;
+  --brand: #0F4652; --on-brand: #FFEBC8; --on-brand-soft: rgba(255, 235, 200, 0.8); --brand-line: rgba(255, 235, 200, 0.22);
+  --teal: #7FD1C4; --teal-soft: #123F48; --gold: #FFC233; --gold-ink: #FFE18A; --gold-soft: #4A3A0A;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 22px 72px;
+}
+.wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.mono { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+mark.fill { background: var(--gold-soft); color: var(--gold-ink); padding: 0 0.25em; border-bottom: 2px dashed var(--gold); font: inherit; }
+a.src { color: var(--teal); font-weight: 600; }
+
+.crumbs { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; color: var(--muted); }
+.crumbs b { color: var(--ink); font-weight: 500; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); margin-right: 6px; }
+
+.hero { background: var(--brand); color: var(--on-brand); border-radius: 10px; padding: 34px 26px 28px; display: flex; flex-direction: column; gap: 26px; min-width: 0; }
+.hero h1 { font-family: var(--display); font-weight: 800; font-size: clamp(3.1rem, 13vw, 7.4rem); line-height: 0.88; letter-spacing: -0.05em; margin: 0; }
+.hero h1 i { font-style: normal; color: var(--gold); }
+.hero .pitch { margin: 0; font-family: var(--display); font-weight: 500; font-size: clamp(1.3rem, 3.8vw, 1.9rem); line-height: 1.2; letter-spacing: -0.015em; max-width: 26ch; }
+.hero .sub { margin: 0; color: var(--on-brand-soft); max-width: 60ch; }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; border: 1px solid var(--brand-line); border-radius: 6px; overflow: hidden; margin: 0; }
+.fields > div { padding: 10px 14px; border-right: 1px solid var(--brand-line); border-bottom: 1px solid var(--brand-line); margin: 0 -1px -1px 0; min-width: 0; }
+.fields dt { color: var(--on-brand-soft); font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.fields dd { margin: 2px 0 0; font-weight: 500; overflow-wrap: anywhere; }
+
+.stages { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; margin-top: 4px; }
+.stage { font: inherit; font-family: var(--display); font-weight: 800; font-size: 0.98rem; cursor: pointer; border: 0; color: var(--on-brand); background: rgba(255, 235, 200, 0.18); padding: 14px 8px 14px 22px; text-align: left; line-height: 1.1; clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%); margin-right: -6px; }
+.stage:first-child { clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%); padding-left: 14px; }
+.stage small { display: block; font-family: var(--mono); font-weight: 400; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; margin-top: 4px; }
+.stage.upcoming { background: rgba(255, 235, 200, 0.07); color: var(--on-brand-soft); }
+.stage.current { background: var(--gold); color: #1A1200; }
+.stage[aria-pressed="true"] span { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+.stage:hover { filter: brightness(1.12); }
+.stagenote { margin: 0; min-height: 3.2em; max-width: 62ch; }
+.stagenote b { font-family: var(--display); font-weight: 800; color: var(--gold); }
+
+h2 { font-family: var(--display); font-weight: 800; font-size: clamp(1.9rem, 5.5vw, 3rem); line-height: 1; letter-spacing: -0.035em; margin: 0; text-wrap: balance; }
+.sec { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.kicker { color: var(--teal); font-weight: 500; }
+.lead { margin: 0; max-width: 62ch; font-size: 1.1rem; }
+.lead em { font-style: normal; font-weight: 600; background: linear-gradient(transparent 62%, var(--gold-soft) 62%); }
+.fine { margin: 0; color: var(--muted); font-size: 0.85rem; }
+button.btn { font: inherit; font-weight: 600; font-size: 0.88rem; cursor: pointer; border: 1.5px solid var(--ink); background: var(--ink); color: var(--bg); padding: 7px 14px; border-radius: 999px; }
+button.btn:hover { background: var(--gold); border-color: var(--gold); color: #1A1200; }
+button.btn.ghost { background: transparent; color: var(--ink); }
+button.btn.ghost:hover { background: var(--gold); color: #1A1200; }
+
+.inbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; }
+.readout { margin: 0; font-weight: 500; }
+.mails { display: flex; flex-direction: column; gap: 12px; }
+.mail { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.mail .from { color: var(--muted); }
+.mail h3 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 1.18rem; letter-spacing: -0.01em; line-height: 1.2; }
+.mail p.pre { margin: 0; max-width: 62ch; }
+.buckets { display: flex; flex-wrap: wrap; gap: 8px; }
+.bk { font: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--ink); background: transparent; color: var(--ink); padding: 6px 14px; border-radius: 999px; }
+.bk:hover { background: var(--teal-soft); }
+.bk[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.reveal { background: var(--teal-soft); border-radius: 6px; padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; border-left: 4px solid var(--teal); }
+.reveal.diff { border-left-color: var(--gold); }
+.reveal .tag { color: var(--teal); font-weight: 500; }
+.reveal.diff .tag { color: var(--gold-ink); }
+.reveal p { margin: 0; max-width: 62ch; }
+.draft { font-family: var(--mono); font-size: 0.8rem; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; padding: 10px 12px; background: var(--panel); border-radius: 4px; }
+
+.fit { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.fit > div { display: grid; grid-template-columns: minmax(150px, 220px) minmax(0, 1fr); gap: 6px 24px; padding: 16px 4px; border-bottom: 1px solid var(--line); }
+.fit h3 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.015em; line-height: 1.15; }
+.fit p { margin: 0; max-width: 62ch; }
+.chip { display: block; width: max-content; margin-top: 8px; font-family: var(--mono); font-weight: 500; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
+.chip.yes { background: var(--teal); color: var(--bg); }
+.chip.part { background: var(--gold-soft); color: var(--gold-ink); }
+.chip.no { border: 1.5px solid var(--muted); color: var(--muted); }
+
+.brief { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.brief .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; align-items: baseline; border-bottom: 1.5px dashed var(--line); padding-bottom: 12px; }
+.brief .top b { font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.015em; }
+.brief .top .mono { color: var(--muted); }
+.brief dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 12px 22px; }
+.brief dt { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); padding-top: 4px; }
+.brief dd { margin: 0; max-width: 60ch; }
+
+details { border-top: 1px solid var(--line); }
+details:last-of-type { border-bottom: 1px solid var(--line); }
+summary { list-style: none; cursor: pointer; padding: 16px 4px; display: flex; gap: 14px; align-items: baseline; justify-content: space-between; font-family: var(--display); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.015em; line-height: 1.2; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-family: var(--mono); font-weight: 400; font-size: 1.4rem; color: var(--teal); flex-shrink: 0; }
+details[open] summary::after { content: "\2212"; }
+summary .meta { display: block; font-family: var(--mono); font-weight: 400; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+.body { padding: 0 4px 22px; display: flex; flex-direction: column; gap: 14px; }
+.body p { margin: 0; max-width: 62ch; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.box h4 { margin: 0; font-family: var(--mono); font-weight: 500; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); }
+.box.broke h4 { color: var(--gold-ink); }
+.box.broke { border-color: var(--gold); }
+.box p { margin: 0; }
+.say { background: var(--teal-soft); border-radius: 6px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; }
+.say .head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
+.say .head .mono { color: var(--teal); font-weight: 500; }
+.say p { font-size: 1.05rem; line-height: 1.6; }
+
+.cta { background: var(--brand); color: var(--on-brand); border-radius: 10px; padding: 28px 26px 30px; display: flex; flex-direction: column; gap: 16px; }
+.cta h2 { color: var(--on-brand); }
+.cta p { margin: 0; color: var(--on-brand-soft); max-width: 52ch; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.links a { background: var(--gold); color: #1A1200; font-weight: 600; text-decoration: none; padding: 11px 20px; border-radius: 999px; overflow-wrap: anywhere; }
+.links a:hover { text-decoration: underline; }
+
+@media (max-width: 720px) {
+  .stages { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .stage, .stage:first-child { clip-path: none; margin-right: 0; padding: 12px 14px; border-left: 6px solid var(--brand-line); background: rgba(255, 235, 200, 0.12); }
+  .stage.current { border-left-color: var(--gold); background: var(--gold); }
+  .stage small { display: inline; margin: 0 0 0 8px; }
+  .hero { padding: 26px 18px 22px; }
+  .pair { grid-template-columns: minmax(0, 1fr); }
+  .fit > div { grid-template-columns: minmax(0, 1fr); }
+  .brief dl { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .brief dd { margin-bottom: 10px; }
+}
+[hidden]{display:none!important}
+body{margin:0}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="crumbs mono"><span>Pipeline / Executive Assistant to the CEO / <b>Natasha Bag</b></span><span><i class="dot"></i>Open &middot; Owner: you</span></div>
+
+  <section class="hero" aria-label="Opportunity">
+    <h1>Natasha Bag<i>.</i></h1>
+    <p class="pitch">I check the details twice.</p>
+    <p class="sub">Final-year B.Tech in Electronics and Computer Science at KIIT, Bhubaneswar. I organize and model for KIIT's fashion society, KZARSHION. Applying to be Executive Assistant to the CEO at Supabase, from India Standard Time, inside the APAC time zone the role needs.</p>
+    <dl class="fields">
+      <div><dt>Stage</dt><dd>Demo</dd></div>
+      <div><dt>Applying to</dt><dd>Executive Assistant to the CEO</dd></div>
+      <div><dt>Time zone</dt><dd>IST, UTC+5:30</dd></div>
+      <div><dt>Can start</dt><dd id="startdate"></dd></div>
+    </dl>
+    <div class="stages" id="stages"></div>
+    <p class="stagenote" id="stagenote" aria-live="polite"></p>
+  </section>
+
+  <section class="sec" aria-labelledby="demo-h">
+    <span class="mono kicker">Stage 3 &middot; Demo</span>
+    <h2 id="demo-h">Sort the CEO's inbox.</h2>
+    <p class="lead">Six made-up emails. Choose where each one goes, then see where I would put it and why. A few of these are judgment calls. <em>No real people or companies appear here.</em></p>
+    <div class="inbar">
+      <p class="readout" id="readout" aria-live="polite"></p>
+      <button type="button" class="btn ghost" id="reset">Start over</button>
+    </div>
+    <div class="mails" id="mails"></div>
+    <p class="fine">Times in drafts are in the CEO's time zone. I'd confirm every time in both zones before sending.</p>
+  </section>
+
+  <section class="sec" aria-labelledby="fit-h">
+    <span class="mono kicker">The posting</span>
+    <h2 id="fit-h">Where I fit.</h2>
+    <p class="lead">Supabase's <a class="src" href="https://jobs.accel.com/companies/supabase-2/jobs/85474436-executive-assitant-to-the-ceo" target="_blank" rel="noopener">posting</a> lists what a good fit looks like. Here is each point, marked honestly.</p>
+    <div class="fit" id="fit"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="brief-h">
+    <span class="mono kicker">Writing</span>
+    <h2 id="brief-h">How I'd brief you.</h2>
+    <p class="lead">A briefing should fit on one screen and tell you what to decide. Here is how I'd write one. <em>The meeting is made up.</em></p>
+    <div class="brief">
+      <div class="top"><b>Board prep, Wednesday</b><span class="mono">Sample &middot; 45 minutes</span></div>
+      <dl>
+        <dt>Why it matters</dt><dd>The board meets on Friday. This is the only slot left to agree what you will say about hiring.</dd>
+        <dt>Decide today</dt><dd>Share the revised hiring plan now, or hold it for Friday.</dd>
+        <dt>What I know</dt><dd>Two directors asked about hiring pace in their last emails. The revised plan is on page 3 of the pack.</dd>
+        <dt>What I don't know</dt><dd>Whether finance has signed off the numbers. I've asked and will tell you by 5 pm.</dd>
+        <dt>Your time</dt><dd>You need 10 minutes to read pages 2 to 4 before the meeting.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="obj-h">
+    <span class="mono kicker">Before you ask</span>
+    <h2 id="obj-h">Objection log.</h2>
+    <p class="lead">Four doubts you might have, and my answers. I'd rather you hear them from me first.</p>
+    <div id="objections"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="act-h">
+    <span class="mono kicker">Activity</span>
+    <h2 id="act-h">What I've actually done.</h2>
+    <p class="lead">Each entry says what broke and what I did next. Highlighted blanks are mine to fill. Everything else comes from my real work.</p>
+    <div id="activity"></div>
+  </section>
+
+  <section class="cta" aria-labelledby="next-h">
+    <span class="mono" style="color: var(--gold)">Next step &middot; Owner: you</span>
+    <h2 id="next-h">Your move.</h2>
+    <p>Give me one real task from your week. I'll show you how I would handle it.</p>
+    <div class="links">
+      <a href="https://linkedin.com/in/natasha-bag-6038292a6" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/natasha2308" target="_blank" rel="noopener">GitHub: natasha2308</a>
+    </div>
+  </section>
+</div>
+
+<script>
+function chips(s) { return s.replace(/\{\{(.+?)\}\}/g, '<mark class="fill">$1</mark>'); }
+function plain(s) { return s.replace(/\{\{(.+?)\}\}/g, "[$1]"); }
+
+var STAGES = [
+  { n: "Lead", s: "passed", t: "You opened a link from me. Thanks for that." },
+  { n: "Qualified", s: "passed", t: "Based in India, on IST (UTC+5:30), inside the APAC time zone the role needs. Final-year B.Tech, batch 2023 to 2027." },
+  { n: "Demo", s: "current", t: "You are here. Sort the inbox below, then read how I match the posting." },
+  { n: "Proposal", s: "upcoming", t: "Tell me what the CEO's week looks like. I'll draft how I would run the first two weeks." },
+  { n: "Closed", s: "upcoming", t: "Let's talk. My links are at the bottom." }
+];
+
+var BUCKETS = ["Do now", "Draft for approval", "Delegate", "Later"];
+var MAILS = [
+  { from: "Board member", subj: "Can we move Thursday's board prep to Wednesday?", pre: "I'm travelling on Thursday. Any time on Wednesday works for me.", pick: 0,
+    why: "A board member has asked and the date is close. Waiting costs more than checking.",
+    next: "I'd check the CEO's calendar, hold two Wednesday slots, and confirm the times in both time zones.",
+    draft: "Hi, Wednesday works. I've held 10:00 and 14:00 PT so you can pick. I'll send the prep pack the evening before.\nNatasha, assisting the CEO" },
+  { from: "Conference organiser", subj: "Keynote slot: need a yes or no by Friday", pre: "We'd love the CEO to open the day. Could you confirm by Friday?", pick: 1,
+    why: "A yes commits the CEO's time and public voice. That is their call, not mine.",
+    next: "I'd say an answer is coming by Friday, ask for audience size and dates, and put a short summary in front of the CEO.",
+    draft: "Hi, thank you for the invitation. The CEO will reply by Friday. Could you send the expected audience size and the date options?\nNatasha, assisting the CEO" },
+  { from: "Travel desk", subj: "Berlin flight rebooked, new departure 06:10", pre: "The airline moved your outbound flight. The new departure is 06:10 on Tuesday.", pick: 0,
+    why: "The change affects a real plan, and an early start may clash with the evening before.",
+    next: "I'd check the calendar for conflicts, move the airport transfer, and tell the CEO in one line." },
+  { from: "New engineer", subj: "Could I get 15 minutes for career advice?", pre: "I joined last month and would love to learn from your path.", pick: 2,
+    why: "It is a kind request, but a manager or the People team can answer it better than the CEO's calendar can.",
+    next: "I'd reply warmly, name who will follow up, and copy them." },
+  { from: "Software vendor", subj: "What's new this quarter", pre: "Our quarterly product newsletter is here.", pick: 3,
+    why: "Nothing in it needs a decision.",
+    next: "I'd keep it in a weekly digest the CEO can skim or skip." },
+  { from: "Investor update thread", subj: "Draft attached, please review before it goes out Monday", pre: "Here is the update. Anything you want changed before it goes to investors?", pick: 1,
+    why: "It goes to investors, so the CEO signs off, not me.",
+    next: "I'd send the CEO a three-line summary of what changed and the two questions I'd ask before it goes." }
+];
+
+var FIT = [
+  { t: "Supported a senior executive", c: "part", l: "Partly", e: "Not formally. Informally, yes: at Tata Steel I supported the Branch Manager in a role close to an assistant's. I handled their documents, some of their emails, and follow-ups with some vendors." },
+  { t: "APAC time zone", c: "yes", l: "Yes", e: "I'm in India Standard Time, UTC+5:30." },
+  { t: "Writing and speaking", c: "yes", l: "Yes", e: "I wrote a 25-page report for Tata Motors in KIIT's format, with eight figures. I've been part of MUN. I study electronics and computer science, so I can follow the technical side too." },
+  { t: "Async, remote teams", c: "no", l: "Not yet", e: "I haven't worked remotely or async yet. The briefing note above is how I write for people who are not in the room." },
+  { t: "Notion, Slack, Google Workspace, AI tools", c: "part", l: "Partly", e: "I use Notion, and I'm happy to work in Slack and Google Workspace from day one. I've built AI tools myself, including an AI tutoring assistant." },
+  { t: "Judgment and discretion", c: "part", l: "Partly", e: "I handled documents and some emails for the Branch Manager, so I saw things that were not mine to share. I also anonymised every dealer and employee name in my Tata Motors report." },
+  { t: "Personal-assistant tasks", c: "yes", l: "Yes", e: "I'm comfortable with them. My work with the Branch Manager at Tata Steel was close to an assistant's role." }
+];
+
+var OBJ = [
+  { q: "You haven't supported a CEO before.", a: "Not formally. Informally, yes: at Tata Steel I supported the Branch Manager in a role close to an assistant's. I handled their documents, some of their emails, and follow-ups with some vendors. I know the gap is real, so the inbox above shows how I would do it." },
+  { q: "You haven't worked remotely or async.", a: "True, not yet. The posting asks for it and I don't have it. {{What you would do in your first two weeks to get up to speed on async work.}}" },
+  { q: "You're still a student.", a: "I graduate in 2027, and I can start in December 2026. I can commit to working full time." },
+  { q: "Why this role?", a: "This role would let me work directly with the CEO and see what is happening across the company. I am an electronics and computer science student, and I want to begin my career at a technology company. Supabase is that kind of company, and I would be glad to contribute to it. I can work full time from December 2026." }
+];
+
+var ACT = [
+  {
+    t: "Supporting the Branch Manager", m: "Tata Steel &middot; Assistant-style role",
+    wall: "I supported the Branch Manager at Tata Steel in a role close to an assistant's. I handled their documents, some of their emails, and follow-ups with some vendors. {{Optional: one example, like a document you prepared or a vendor you chased.}}",
+    broke: "{{Something that went wrong, or nearly did, and how you caught it.}}",
+    fix: "{{What you changed so it did not happen again.}}",
+    say: "At Tata Steel I supported the Branch Manager in a role close to an assistant's. I handled their documents, some of their emails, and follow-ups with some vendors. {{One example of something you did.}}"
+  },
+  {
+    t: "Market Share, East Zone", m: "Tata Motors Passenger Vehicles Limited &middot; Internship project",
+    wall: "A project on tracking and improving market share, built from a Siebel CRM export: over 72,000 rows, 60 dealers and more than 2,200 employees. I wrote it up as a 25-page KIIT report with eight figures. Dealer and employee names became Dealer A to J and Employee 1 to 10, so no real names appear.",
+    broke: "Electric vehicle dealers sat under their own codes, starting with 5, apart from their parent dealer codes, starting with 3. The EV numbers did not line up with the dealers they belonged to.",
+    fix: "I mapped every 5-series EV code back to its 3-series parent, then rebuilt the dealer view. {{What changed once the numbers matched? Add one real result.}}",
+    say: "At Tata Motors I worked on market share for the East Zone and wrote it up as a 25-page report. I anonymised every dealer and employee name before it went in. Here's what broke. Electric vehicle dealers were logged under their own codes, starting with 5, instead of the parent dealer code, starting with 3. So their numbers sat apart from the dealers they belonged to. I mapped every EV code back to its parent. {{What changed once the numbers matched.}}"
+  },
+  {
+    t: "KZARSHION", m: "KIIT University &middot; Fashion society &middot; Organizing and modelling",
+    wall: "I organize and model for KZARSHION, KIIT's fashion society. {{One event: what you organised and who you had to coordinate.}}",
+    broke: "{{Something that went wrong behind the scenes at an event.}}",
+    fix: "{{What you changed, and who noticed.}}",
+    say: "I organize and model for KZARSHION, KIIT's fashion society. {{One event and what you organised.}} Behind the scenes, {{what went wrong}}. So I {{what you changed}}. It taught me {{one plain lesson about working with people}}."
+  },
+  {
+    t: "Video Analytics", m: "Tata Steel Mining &middot; Internship",
+    wall: "A video analytics internship at Tata Steel Mining. {{One line: what the video showed and what the system had to spot.}}",
+    broke: "{{What failed first? Pick the honest answer, even if it is small.}}",
+    fix: "{{What you changed, and what happened after.}}",
+    say: "I did a video analytics internship at Tata Steel Mining. The job was to {{what the system had to detect}}. My first try was {{your first approach}}. It didn't work because {{the real reason}}. So I {{what you changed}}. After that, {{the result}}."
+  },
+  {
+    t: "LinguaVerse", m: "My own build &middot; React, TypeScript, Vite",
+    wall: "An AI translator that cares about culture, not only words. Five pages (Home, Translate, Explore, Community and Pricing), built in React and TypeScript with Vite and routed with wouter.",
+    broke: "I wanted more functionality before I had decided what a visitor should do on the site. \"Add features\" is not a plan. The work stalled.",
+    fix: "I stopped adding. The plan now: pick one feature, write down what a user does with it, and build only that.",
+    say: "LinguaVerse is an AI translator that cares about culture, not just words. It's built in React and TypeScript, with five pages: Home, Translate, Explore, Community and Pricing. Here's what went wrong. I asked for more features before I'd decided what a visitor should actually do on the site. So the work stalled. My next step is simple. Pick one feature, define it first, then build it."
+  }
+];
+
+/* hero */
+document.getElementById("startdate").innerHTML = "December 2026";
+
+/* stages */
+function renderStages(sel) {
+  var h = "";
+  STAGES.forEach(function (s, i) {
+    h += '<button type="button" class="stage ' + s.s + '" data-i="' + i + '" aria-pressed="' + (i === sel) + '"><span>' + s.n + "</span><small>" + (s.s === "current" ? "You are here" : s.s === "passed" ? "Done" : "Next") + "</small></button>";
+  });
+  document.getElementById("stages").innerHTML = h;
+  document.getElementById("stagenote").innerHTML = "<b>" + STAGES[sel].n + ".</b> " + chips(STAGES[sel].t);
+}
+document.getElementById("stages").addEventListener("click", function (e) {
+  var b = e.target.closest("button"); if (!b) return;
+  renderStages(+b.getAttribute("data-i"));
+});
+renderStages(2);
+
+/* inbox demo */
+var picks = {};
+function mailHtml(m, i) {
+  var h = '<article class="mail"><div class="from mono">From: ' + m.from + "</div><h3>" + m.subj + '</h3><p class="pre">' + m.pre + '</p><div class="buckets" role="group" aria-label="Where does this go?">';
+  BUCKETS.forEach(function (b, j) {
+    h += '<button type="button" class="bk" data-i="' + i + '" data-j="' + j + '" aria-pressed="false">' + b + "</button>";
+  });
+  h += '</div><div class="reveal" id="rev-' + i + '" hidden aria-live="polite"></div></article>';
+  return h;
+}
+function renderMails() {
+  picks = {};
+  document.getElementById("mails").innerHTML = MAILS.map(mailHtml).join("");
+  updateReadout();
+}
+function updateReadout() {
+  var done = 0, same = 0;
+  MAILS.forEach(function (m, i) { if (picks[i] !== undefined) { done++; if (picks[i] === m.pick) same++; } });
+  var t = "Sorted " + done + " of " + MAILS.length + ".";
+  if (done) t += " You matched me on " + same + ".";
+  if (done === MAILS.length) t += same === MAILS.length ? " We think alike." : " Where we differ is worth talking about.";
+  document.getElementById("readout").textContent = t;
+}
+document.getElementById("mails").addEventListener("click", function (e) {
+  var b = e.target.closest("button.bk"); if (!b) return;
+  var i = +b.getAttribute("data-i"), j = +b.getAttribute("data-j"), m = MAILS[i];
+  picks[i] = j;
+  var group = b.parentNode.querySelectorAll("button");
+  for (var k = 0; k < group.length; k++) group[k].setAttribute("aria-pressed", k === j ? "true" : "false");
+  var same = j === m.pick;
+  var r = document.getElementById("rev-" + i);
+  var h = '<span class="mono tag">' + (same ? "We agree" : "I would do it differently") + "</span>";
+  h += "<p><b>My pick: " + BUCKETS[m.pick] + ".</b> " + m.why + "</p><p>" + m.next + "</p>";
+  if (m.draft) h += '<div class="draft">' + m.draft + "</div>";
+  r.innerHTML = h;
+  r.className = "reveal" + (same ? "" : " diff");
+  r.hidden = false;
+  updateReadout();
+});
+document.getElementById("reset").addEventListener("click", renderMails);
+renderMails();
+
+/* fit */
+(function () {
+  var h = "";
+  FIT.forEach(function (f) {
+    h += "<div><h3>" + f.t + (f.c ? '<span class="chip ' + f.c + '">' + f.l + "</span>" : "") + "</h3><p>" + chips(f.e) + "</p></div>";
+  });
+  document.getElementById("fit").innerHTML = h;
+})();
+
+/* objections */
+(function () {
+  var h = "";
+  OBJ.forEach(function (o, i) {
+    h += "<details" + (i === 0 ? " open" : "") + "><summary>" + o.q + '</summary><div class="body"><p>' + chips(o.a) + "</p></div></details>";
+  });
+  document.getElementById("objections").innerHTML = h;
+})();
+
+/* activity */
+(function () {
+  var h = "";
+  ACT.forEach(function (a, i) {
+    h += "<details><summary><span>" + a.t + '<span class="meta">' + a.m + "</span></span></summary>";
+    h += '<div class="body"><p>' + chips(a.wall) + "</p>";
+    h += '<div class="pair"><div class="box broke"><h4>What broke</h4><p>' + chips(a.broke) + '</p></div><div class="box"><h4>What I did next</h4><p>' + chips(a.fix) + "</p></div></div>";
+    h += '<div class="say"><div class="head"><span class="mono">Say this &middot; about 30 seconds</span><button type="button" class="btn ghost" data-copy="' + i + '">Copy script</button></div><p id="say-' + i + '">' + chips(a.say) + "</p></div></div></details>";
+  });
+  var el = document.getElementById("activity");
+  el.innerHTML = h;
+  el.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-copy]"); if (!b) return;
+    var i = +b.getAttribute("data-copy");
+    function fallback() {
+      var range = document.createRange();
+      range.selectNodeContents(document.getElementById("say-" + i));
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      b.textContent = "Selected. Press copy.";
+    }
+    try { navigator.clipboard.writeText(plain(ACT[i].say)).then(function () { b.textContent = "Copied"; }, fallback); } catch (err) { fallback(); }
+    setTimeout(function () { b.textContent = "Copy script"; }, 2200);
+  });
+})();
+</script>
+
+</body>
+</html>
