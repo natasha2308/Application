@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Natasha Bag, applying for People Operations Coordinator at Circle.">
+<meta property="og:title" content="Natasha Bag for Circle">
+<meta property="og:description" content="Work a made-up People Ops queue, see how I match the posting, and read how I would run a monthly challenge.">
+<meta property="og:type" content="website">
+<title>Natasha Bag for Circle</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: bold and playful. A top bar, a big hello with the journey tabs, then chunky outlined cards with hard shadows. The queue demo is a team chat: one message arrives, you pick, and my reply comes back as a bubble. Indigo, coral and soft lilac on warm white. */
+:root {
+  --bg: #F6F3EE; --card: #FFFFFF; --ink: #1B1F3B; --muted: #5B6082; --line: #1B1F3B;
+  --indigo: #3140A8; --indigo-soft: #E2E5F7; --on-indigo: #FFF6EE;
+  --coral: #FF7A59; --coral-soft: #FFDCCF; --coral-ink: #6B2208;
+  --sun: #FFD25E;
+  --shadow: 5px 5px 0 var(--ink);
+  --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1130; --card: #181C48; --ink: #F1F2FF; --muted: #B4B9DE; --line: #8E98F0;
+    --indigo: #8E98F0; --indigo-soft: #232860; --on-indigo: #0E1130;
+    --coral: #FF8D6E; --coral-soft: #4A2A24; --coral-ink: #FFD3C4; --sun: #FFD25E;
+    --shadow: 5px 5px 0 #000; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1130; --card: #181C48; --ink: #F1F2FF; --muted: #B4B9DE; --line: #8E98F0;
+  --indigo: #8E98F0; --indigo-soft: #232860; --on-indigo: #0E1130;
+  --coral: #FF8D6E; --coral-soft: #4A2A24; --coral-ink: #FFD3C4; --sun: #FFD25E;
+  --shadow: 5px 5px 0 #000; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55;
+  padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+[hidden] { display: none !important; }
+mark.fill { background: var(--sun); color: #3A2A00; padding: 0.05em 0.35em; border-radius: 4px; font: inherit; }
+.label { font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
+
+/* top bar */
+.bar { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 2.5px solid var(--line); }
+.bar-in { max-width: 1040px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { font-family: var(--display); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.03em; display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--ink); }
+.logo i { width: 18px; height: 18px; border-radius: 50%; background: var(--coral); border: 2.5px solid var(--line); display: block; }
+.bar nav { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.bar nav a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 999px; }
+.bar nav a:hover { background: var(--indigo-soft); }
+.bar nav a.go { background: var(--coral); border: 2px solid var(--line); color: #1B1F3B; }
+
+.wrap { max-width: 1040px; margin: 0 auto; padding: 40px 16px 96px; display: flex; flex-direction: column; gap: 64px; }
+
+/* hero */
+.hero { display: flex; flex-direction: column; gap: 24px; }
+.stickers { display: flex; flex-wrap: wrap; gap: 8px; }
+.sticker { display: inline-flex; align-items: center; gap: 8px; border: 2.5px solid var(--line); background: var(--card); border-radius: 999px; padding: 5px 14px; font-weight: 600; font-size: 0.88rem; box-shadow: 3px 3px 0 var(--ink); }
+.sticker:nth-child(2) { background: var(--sun); color: #1B1F3B; }
+.sticker:nth-child(3) { background: var(--coral-soft); color: var(--coral-ink); }
+.sticker .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--coral); display: block; }
+.hero h1 { font-family: var(--display); font-weight: 800; font-size: clamp(3.2rem, 12vw, 8.2rem); line-height: 0.9; letter-spacing: -0.05em; margin: 0; }
+.hero h1 span { background: var(--coral); padding: 0 0.12em; border: 3px solid var(--line); border-radius: 12px; display: inline-block; transform: rotate(-1.5deg); box-shadow: var(--shadow); color: #1B1F3B; }
+.hero .pitch { margin: 0; font-family: var(--display); font-weight: 500; font-size: clamp(1.4rem, 3.6vw, 2.1rem); line-height: 1.15; letter-spacing: -0.02em; max-width: 30ch; }
+.hero .sub { margin: 0; max-width: 62ch; color: var(--muted); font-size: 1.08rem; }
+
+/* journey */
+.journey { background: var(--indigo); color: var(--on-indigo); border: 3px solid var(--line); border-radius: 20px; padding: 22px 22px 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 16px; }
+.journey .label { color: var(--coral); }
+.stages { display: flex; flex-wrap: wrap; gap: 8px; }
+.stage { font: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: 2.5px solid var(--on-indigo); background: transparent; color: var(--on-indigo); padding: 8px 16px; border-radius: 999px; display: inline-flex; gap: 8px; align-items: center; }
+.stage .n { width: 22px; height: 22px; border-radius: 50%; border: 2px solid currentColor; display: grid; place-items: center; font-size: 0.72rem; }
+.stage.passed .n { background: var(--on-indigo); color: var(--indigo); }
+.stage.current { background: var(--coral); border-color: var(--coral); color: #1B1F3B; }
+.stage[aria-pressed="true"] { box-shadow: 0 4px 0 0 var(--on-indigo); }
+.stage:hover { filter: brightness(1.1); }
+.stagenote { margin: 0; max-width: 64ch; min-height: 3.2em; }
+.stagenote b { font-family: var(--display); font-weight: 800; color: var(--coral); }
+
+/* cards */
+.card { background: var(--card); border: 3px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); padding: 30px 30px 32px; display: flex; flex-direction: column; gap: 20px; min-width: 0; scroll-margin-top: 80px; }
+.tag { align-self: flex-start; background: var(--sun); color: #1B1F3B; border: 2.5px solid var(--line); border-radius: 999px; padding: 4px 14px; transform: rotate(-1.5deg); }
+.card:nth-of-type(even) .tag { background: var(--coral-soft); color: var(--coral-ink); }
+h2 { font-family: var(--display); font-weight: 800; font-size: clamp(2.1rem, 5.4vw, 3.4rem); line-height: 0.98; letter-spacing: -0.04em; margin: 0; text-wrap: balance; }
+.lead { margin: 0; max-width: 62ch; font-size: 1.1rem; }
+.lead em { font-style: normal; font-weight: 700; background: linear-gradient(transparent 58%, var(--sun) 58%); color: var(--ink); }
+.fine { margin: 0; color: var(--muted); font-size: 0.88rem; }
+button.btn { font: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: 2.5px solid var(--line); background: var(--coral); color: #1B1F3B; padding: 10px 20px; border-radius: 999px; box-shadow: 3px 3px 0 var(--ink); }
+button.btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+button.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+button.btn.ghost { background: var(--card); color: var(--ink); }
+
+/* chat */
+.chat { background: var(--indigo-soft); border: 2.5px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.prog { display: flex; align-items: center; gap: 12px; color: var(--muted); }
+.bars { display: flex; gap: 5px; flex: 1; }
+.bars b { height: 8px; flex: 1; border-radius: 4px; background: var(--card); border: 2px solid var(--line); }
+.bars b.done { background: var(--indigo); }
+.bars b.now { background: var(--coral); }
+.msg { display: flex; gap: 12px; align-items: flex-start; }
+.av { width: 40px; height: 40px; border-radius: 50%; border: 2.5px solid var(--line); display: grid; place-items: center; font-family: var(--display); font-weight: 800; flex-shrink: 0; background: var(--sun); color: #1B1F3B; }
+.av.me { background: var(--coral); }
+.bubble { background: var(--card); border: 2.5px solid var(--line); border-radius: 4px 18px 18px 18px; padding: 12px 16px 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0; max-width: 62ch; }
+.bubble .who { color: var(--indigo); }
+.bubble h3 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; line-height: 1.2; }
+.bubble p { margin: 0; }
+.bubble.me { background: var(--coral-soft); color: var(--coral-ink); border-radius: 18px 4px 18px 18px; }
+.bubble.me .who { color: var(--coral-ink); }
+.bubble.me.agree { background: var(--card); color: var(--ink); }
+.msg.reply { flex-direction: row-reverse; align-self: flex-end; }
+.draft { font-family: ui-monospace, Menlo, monospace; font-size: 0.8rem; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; padding: 10px 12px; background: var(--card); color: var(--ink); border: 2px dashed var(--line); border-radius: 10px; margin-top: 6px; }
+.ask { display: flex; flex-direction: column; gap: 8px; }
+.buckets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.bk { font: inherit; font-weight: 700; font-size: 0.92rem; cursor: pointer; border: 2.5px solid var(--line); background: var(--card); color: var(--ink); padding: 11px 8px; border-radius: 12px; box-shadow: 3px 3px 0 var(--ink); }
+.bk:hover:not(:disabled) { background: var(--sun); color: #1B1F3B; transform: translate(-1px, -1px); }
+.bk:disabled { cursor: default; box-shadow: none; opacity: 0.5; }
+.bk[aria-pressed="true"] { background: var(--indigo); color: var(--on-indigo); opacity: 1; box-shadow: none; }
+.qfoot { display: flex; justify-content: flex-end; }
+.result .big { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.03em; line-height: 1; }
+.result .big i { font-style: normal; background: var(--coral); border: 2.5px solid var(--line); border-radius: 10px; padding: 0 0.2em; display: inline-block; transform: rotate(-2deg); color: #1B1F3B; }
+.result p { margin: 8px 0 0; }
+.tally { display: flex; flex-direction: column; gap: 8px; }
+.tally > div { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 4px 14px; padding: 10px 14px; background: var(--card); border: 2px solid var(--line); border-radius: 10px; font-size: 0.92rem; }
+.tally .ok { color: var(--indigo); font-weight: 700; }
+.tally .no { color: var(--coral-ink); font-weight: 700; }
+
+/* fit */
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.cell { border: 2.5px solid var(--line); border-radius: 14px; padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; background: var(--bg); min-width: 0; }
+.cell.yes { background: var(--indigo-soft); }
+.cell.part { background: var(--coral-soft); color: var(--coral-ink); }
+.cell h3 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; line-height: 1.15; }
+.cell p { margin: 0; font-size: 0.95rem; }
+.stamp { align-self: flex-start; font-weight: 800; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 11px; border: 2.5px solid currentColor; border-radius: 999px; transform: rotate(-2deg); }
+.cell.yes .stamp { background: var(--indigo); color: var(--on-indigo); border-color: var(--line); }
+.cell.no .stamp { color: var(--muted); }
+.cell.part .stamp { background: var(--coral); color: #1B1F3B; border-color: var(--line); }
+
+/* note */
+.note { background: var(--sun); color: #2A1E00; border: 2.5px solid var(--line); border-radius: 14px; padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.note .top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 14px; border-bottom: 2.5px dashed #2A1E00; padding-bottom: 12px; }
+.note .top b { font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; }
+.note dl { margin: 0; display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 12px 22px; }
+.note dt { font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase; font-weight: 800; padding-top: 4px; }
+.note dd { margin: 0; max-width: 56ch; }
+
+/* objections */
+details { border: 2.5px solid var(--line); border-radius: 14px; background: var(--bg); }
+details[open] { background: var(--indigo-soft); }
+summary { list-style: none; cursor: pointer; padding: 15px 18px; display: flex; gap: 14px; align-items: center; justify-content: space-between; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; line-height: 1.2; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; width: 28px; height: 28px; flex-shrink: 0; display: grid; place-items: center; border: 2.5px solid var(--line); border-radius: 50%; background: var(--coral); color: #1B1F3B; font-family: var(--body); font-size: 1.1rem; line-height: 1; }
+details[open] summary::after { content: "\2212"; }
+.body { padding: 0 18px 18px; }
+.body p { margin: 0; max-width: 62ch; }
+.stack { display: flex; flex-direction: column; gap: 10px; }
+
+/* tabs */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.tab { font: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: 2.5px solid var(--line); background: var(--card); color: var(--ink); padding: 9px 18px; border-radius: 999px; box-shadow: 3px 3px 0 var(--ink); }
+.tab:hover { background: var(--sun); color: #1B1F3B; }
+.tab[aria-selected="true"] { background: var(--indigo); color: var(--on-indigo); box-shadow: none; transform: translate(3px, 3px); }
+.panel { background: var(--bg); border: 2.5px solid var(--line); border-radius: 16px; padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.panel h3 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 1.8rem; letter-spacing: -0.03em; line-height: 1; }
+.panel .meta { color: var(--muted); margin-top: -8px; }
+.panel p { margin: 0; max-width: 62ch; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.box { background: var(--card); border: 2.5px solid var(--line); border-radius: 12px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.box h4 { margin: 0; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--indigo); }
+.box.broke { background: var(--coral-soft); }
+.box.broke h4, .box.broke p { color: var(--coral-ink); }
+.say { background: var(--indigo-soft); border: 2.5px dashed var(--line); border-radius: 12px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; }
+.say .row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
+.say .row .label { color: var(--indigo); }
+.say p { font-size: 1.05rem; line-height: 1.65; }
+
+/* closing */
+.cta { background: var(--indigo); color: var(--on-indigo); border: 3px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); padding: 40px 34px 42px; display: flex; flex-direction: column; gap: 18px; }
+.cta .label { color: var(--sun); }
+.cta h2 { font-size: clamp(3rem, 10vw, 6.5rem); line-height: 0.88; }
+.cta p { margin: 0; max-width: 46ch; font-size: 1.12rem; }
+.cta .links { display: flex; flex-wrap: wrap; gap: 12px; }
+.cta .links a { background: var(--coral); color: #1B1F3B; font-weight: 700; text-decoration: none; padding: 12px 24px; border: 2.5px solid var(--on-indigo); border-radius: 999px; box-shadow: 3px 3px 0 var(--on-indigo); overflow-wrap: anywhere; }
+.cta .links a:hover { transform: translate(-1px, -1px); }
+
+@media (max-width: 720px) {
+  .bar nav a:not(.go) { display: none; }
+  .wrap { padding-top: 28px; gap: 44px; }
+  .card { padding: 22px 18px 24px; border-radius: 18px; }
+  .journey { padding: 18px 16px 20px; }
+  .chat { padding: 14px; }
+  .buckets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .note dl { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .note dd { margin-bottom: 10px; }
+  .pair { grid-template-columns: minmax(0, 1fr); }
+  .tally > div { grid-template-columns: minmax(0, 1fr); }
+  .panel { padding: 18px 16px 20px; }
+  .cta { padding: 28px 20px 30px; }
+  .av { width: 34px; height: 34px; }
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="logo" href="#top"><i></i>Natasha Bag</a>
+    <nav aria-label="Sections">
+      <a href="#queue-sec">Queue</a>
+      <a href="#fit-sec">Fit</a>
+      <a href="#plan">Plan</a>
+      <a href="#work">Work</a>
+      <a class="go" href="#next">Say hi</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap" id="top">
+  <section class="hero" aria-label="Introduction">
+    <div class="stickers">
+      <span class="sticker"><i class="dot"></i>Open to People Ops</span>
+      <span class="sticker">IST &middot; UTC+5:30</span>
+      <span class="sticker">Can start <span id="startdate"></span></span>
+    </div>
+    <h1>Hi, I'm <span>Natasha.</span></h1>
+    <p class="pitch">I check the details twice.</p>
+    <p class="sub">Final-year B.Tech in Electronics and Computer Science at KIIT, Bhubaneswar. I organize and model for KIIT's fashion society, KZARSHION. Applying to be People Operations Coordinator at Circle, from India Standard Time. I'm early in my career, so this page shows how I work and where I would need to learn.</p>
+    <div class="journey">
+      <span class="label">Where we are</span>
+      <div class="stages" id="stages"></div>
+      <p class="stagenote" id="stagenote" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="card" id="queue-sec" aria-labelledby="demo-h">
+    <span class="label tag">Try it &middot; Stage 3</span>
+    <h2 id="demo-h">Work the People Ops queue.</h2>
+    <p class="lead">Six made-up messages from a remote team's Slack. Choose where each one goes, then see where I would put it and why. A few are judgment calls. <em>No real people or companies appear here.</em></p>
+    <div class="chat" id="queue" aria-live="polite"></div>
+    <p class="fine">Any time I mention in a reply would be shown in the reader's own time zone, so nobody has to do the maths.</p>
+  </section>
+
+  <section class="card" id="fit-sec" aria-labelledby="fit-h">
+    <span class="label tag">The posting</span>
+    <h2 id="fit-h">Where I fit.</h2>
+    <p class="lead">Circle's posting lists what it is looking for. Here is each point, marked honestly. <em>The biggest gap is People Ops experience, and I would rather say so up front.</em></p>
+    <div class="grid" id="fit"></div>
+  </section>
+
+  <section class="card" id="plan" aria-labelledby="brief-h">
+    <span class="label tag">Programs</span>
+    <h2 id="brief-h">How I'd run a month.</h2>
+    <p class="lead">The posting talks about monthly challenges that work for a team spread across the world. Here is how I'd plan one. <em>The challenge is made up.</em></p>
+    <div class="note">
+      <div class="top"><b>Monthly challenge: teach one small thing</b><span class="label">Sample &middot; one month</span></div>
+      <dl>
+        <dt>The idea</dt><dd>Everyone is invited to share one small skill in a short written post, such as a shortcut, a recipe or a trick for focus. Colleagues reply with what they tried.</dd>
+        <dt>Before it starts</dt><dd>One clear announcement on the first working day, a link to a short how-to, and a check that the theme fits one of the five company values.</dd>
+        <dt>During the month</dt><dd>A gentle reminder each week. One optional live hour, run twice at different times so people in Asia and the Americas can both come.</dd>
+        <dt>Keeping it fair</dt><dd>Joining is always optional. Anything live is also written up, so nobody misses out by being asleep.</dd>
+        <dt>How I'd measure it</dt><dd>Participation by region, one question in the next pulse survey, and a short note on what to change next month.</dd>
+        <dt>What I'd ask first</dt><dd>Does this fit the 2027 engagement plan, and is there budget for a small prize?</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="card" id="doubts" aria-labelledby="obj-h">
+    <span class="label tag">Before you ask</span>
+    <h2 id="obj-h">Objection log.</h2>
+    <p class="lead">Five questions you might have, and my answers. I'd rather you hear them from me first.</p>
+    <div class="stack" id="objections"></div>
+  </section>
+
+  <section class="card" id="work" aria-labelledby="act-h">
+    <span class="label tag">Activity</span>
+    <h2 id="act-h">What I've actually done.</h2>
+    <p class="lead">Each entry says what broke and what I did next. Highlighted blanks are mine to fill. Everything else comes from my real work.</p>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Projects"></div>
+    <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+  </section>
+
+  <section class="cta" id="next" aria-labelledby="next-h">
+    <span class="label">Next step &middot; Owner: you</span>
+    <h2 id="next-h">Your move.</h2>
+    <p>Give me one real task from your week, like a draft FAQ for a benefits change or a week-one welcome note. I'll show you how I would handle it.</p>
+    <div class="links">
+      <a href="https://linkedin.com/in/natasha-bag-6038292a6" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/natasha2308" target="_blank" rel="noopener">GitHub: natasha2308</a>
+    </div>
+  </section>
+</div>
+
+<script>
+function chips(s) { return s.replace(/\{\{(.+?)\}\}/g, '<mark class="fill">$1</mark>'); }
+function plain(s) { return s.replace(/\{\{(.+?)\}\}/g, "[$1]"); }
+
+var STAGES = [
+  { n: "Lead", s: "passed", t: "You opened a link from me. Thanks for that." },
+  { n: "Qualified", s: "passed", t: "Based in India, on IST (UTC+5:30). Final-year B.Tech, batch 2023 to 2027. The overlap with Eastern Time is covered under \"Where I fit\"." },
+  { n: "Demo", s: "current", t: "You are here. Work through the queue below, then read how I match the posting." },
+  { n: "Proposal", s: "upcoming", t: "Tell me what the next quarter of engagement looks like. I'll draft how I would support the first month." },
+  { n: "Closed", s: "upcoming", t: "Let's talk. My links are at the bottom." }
+];
+
+var BUCKETS = ["Handle it", "Escalate", "Fix the docs", "Say no"];
+var MAILS = [
+  { from: "New hire, Brazil", subj: "When do I need to pick my health plan by?", pre: "I start next week and I can't find where the deadline is written down.", pick: 0,
+    why: "It is a plain benefits question and the answer is in the guide. This is the first-stop part of the job.",
+    next: "I'd send the deadline and the link, and set a reminder for two days before it closes.",
+    draft: "Hi! Your enrollment deadline is in the benefits guide here: [link]. I'll remind you two days before it closes. If any plan option is confusing, tell me which part and I'll find out.\nNatasha, People Ops" },
+  { from: "Team member", subj: "My pay looks different this month", pre: "The total is lower than last month and I don't know why.", pick: 1,
+    why: "It is about someone's pay, so I shouldn't guess. The Payroll & Benefits admin has the records.",
+    next: "I'd thank them, tell them who is looking into it and roughly when they'll hear back, and pass it on with the details they gave me. Then I'd follow up until it's closed." },
+  { from: "Team member, direct message", subj: "Can I tell you something and keep it between us?", pre: "I'm struggling with my workload and I don't want my manager to find out yet.", pick: 1,
+    why: "I can listen, but I can't promise to keep it secret. The People Ops Manager needs to know.",
+    next: "I'd be kind and honest. I'd say who I would need to involve and why, and ask how they'd like to handle it. Then I'd go to the People Ops Manager the same day." },
+  { from: "Team lead", subj: "New hire starts Monday and the hoodie hasn't shipped", pre: "Tracking shows nothing. Can you check?", pick: 0,
+    why: "Swag arriving before day one is part of the job, and there isn't much time.",
+    next: "I'd check the vendor's tracking and ask for a firm ship date. If it can't land in time, I'd send a backup. Then I'd tell the team lead what I found." },
+  { from: "Team member", subj: "Where do I change my home address?", pre: "I've looked in the wiki and can't find it.", pick: 2,
+    why: "Three people have asked this week. A reply helps one person. A clear doc helps everyone.",
+    next: "I'd answer them now. Then I'd write a short how-to with screenshots, put it where people search, and link it from the HR Slack bot." },
+  { from: "Manager", subj: "Can you send me the eNPS comments with names?", pre: "I'd like to follow up with people one by one.", pick: 3,
+    why: "People answered a survey expecting privacy. Sharing names would break that promise.",
+    next: "I'd say no kindly, offer what I can share, which is team trends and participation, and tell the People Ops Manager about the request.",
+    draft: "Hi, I can't share individual responses, because people answered expecting privacy. I can send you the trends for your team and the participation numbers. If you'd like, I'll ask the People Ops Manager how best to follow up as a group.\nNatasha, People Ops" }
+];
+
+var FIT = [
+  { t: "People Ops or HR experience", c: "no", l: "Not yet", e: "The posting asks for 1 to 3 years in People Ops, HR coordination, events or employee experience. I haven't done formal People Ops or HR work. This is my biggest gap." },
+  { t: "Culture, engagement and events", c: "part", l: "Partly", e: "I organize events for KZARSHION, KIIT's fashion society. That is university scale, not a company of 270 people in 30+ countries. {{One event: what you organised, how many people, and who you had to coordinate.}}" },
+  { t: "Offsite and event logistics", c: "part", l: "Partly", e: "I haven't booked travel or tracked a budget for an offsite. I have coordinated people and plans for society events. {{Add anything you handled for KZARSHION: vendors, venues, budgets or schedules.}}" },
+  { t: "Care with sensitive information", c: "part", l: "Partly", e: "At Tata Steel I handled documents and some emails for the Branch Manager, so I saw things that were not mine to share. In my Tata Motors report I replaced every dealer and employee name with a code." },
+  { t: "Accuracy, reporting and data", c: "yes", l: "Yes", e: "My Tata Motors project used a CRM export with over 72,000 rows. I found that electric vehicle dealers were logged under separate codes and mapped each one back to its parent dealer, so the numbers matched." },
+  { t: "Writing in English", c: "part", l: "Partly", e: "I can't hand you a CEFR certificate. I can show you my writing: a 25-page report with eight figures, the sample plan above, and this page." },
+  { t: "Curiosity about AI tools", c: "yes", l: "Yes", e: "I built an AI tutoring assistant and LinguaVerse, an AI translator, on my own. I also built a Client Onboarding & Requirements Tracker, so I have thought about what a clean onboarding flow needs to capture." },
+  { t: "Remote and async work", c: "no", l: "Not yet", e: "I haven't worked remotely or async. The sample plan above is how I write for people who are not in the room." },
+  { t: "Overlap with Eastern Time", c: "part", l: "Partly", e: "I'm in IST. In winter that is 10.5 hours ahead of Eastern Time, so 5 to 6 hours of overlap means working roughly 7 pm to 1 am. {{Confirm you are happy with this before you publish. Delete this line if you are not.}}" }
+];
+
+var OBJ = [
+  { q: "You haven't worked in People Ops.", a: "Not formally. The closest I have is organizing for KZARSHION and handling documents and data carefully at Tata. Early on I would be slow with the HRIS and benefits rules. I would ask questions early, write down what I learn so the next answer is quicker, and lean on the People Ops Specialist for systems." },
+  { q: "You haven't worked remotely or async.", a: "True, not yet. In my first two weeks I would read how the team already writes things down and follow the same style. I would agree my overlap hours with the People Ops Manager in week one. Each day I would send a short written update on what I finished and what is waiting. At the end of week one I would ask for feedback and change what I do." },
+  { q: "The time zone is a stretch.", a: "I'm in India, so overlap with Eastern Time means working late evenings. {{Say here whether you are fine with that. Only keep this answer if it is true.}}" },
+  { q: "You're still a student.", a: "I graduate in 2027, and I can start in December 2026. I can commit to working full time." },
+  { q: "Why this role?", a: "The posting says a remote company has to build the moments that make people feel like a team. That is the part of the job I would want to do well. {{Add one or two sentences of your own: what about culture and events work pulls you in?}}" }
+];
+
+var ACT = [
+  {
+    t: "KZARSHION", m: "KIIT University &middot; Fashion society &middot; Organizing and modelling",
+    wall: "I organize and model for KZARSHION, KIIT's fashion society. {{One event: what you organised and who you had to coordinate.}}",
+    broke: "{{Something that went wrong behind the scenes at an event.}}",
+    fix: "{{What you changed, and who noticed.}}",
+    say: "I organize and model for KZARSHION, KIIT's fashion society. {{One event and what you organised.}} Behind the scenes, {{what went wrong}}. So I {{what you changed}}. It taught me {{one plain lesson about working with people}}."
+  },
+  {
+    t: "Market Share, East Zone", m: "Tata Motors Passenger Vehicles Limited &middot; Internship project",
+    wall: "A project on tracking and improving market share, built from a Siebel CRM export: over 72,000 rows, 60 dealers and more than 2,200 employees. I wrote it up as a 25-page KIIT report with eight figures. Dealer and employee names became Dealer A to J and Employee 1 to 10, so no real names appear.",
+    broke: "Electric vehicle dealers sat under their own codes, starting with 5, apart from their parent dealer codes, starting with 3. The EV numbers did not line up with the dealers they belonged to.",
+    fix: "I mapped every 5-series EV code back to its 3-series parent, then rebuilt the dealer view. {{What changed once the numbers matched? Add one real result.}}",
+    say: "At Tata Motors I worked on market share for the East Zone and wrote it up as a 25-page report. I anonymised every dealer and employee name before it went in. Here's what broke. Electric vehicle dealers were logged under their own codes, starting with 5, instead of the parent dealer code, starting with 3. So their numbers sat apart from the dealers they belonged to. I mapped every EV code back to its parent. {{What changed once the numbers matched.}}"
+  },
+  {
+    t: "Supporting the Branch Manager", m: "Tata Steel &middot; Assistant-style role",
+    wall: "I supported the Branch Manager at Tata Steel in a role close to an assistant's. I handled their documents, some of their emails, and follow-ups with some vendors. {{Optional: one example, like a document you prepared or a vendor you chased.}}",
+    broke: "{{Something that went wrong, or nearly did, and how you caught it.}}",
+    fix: "{{What you changed so it did not happen again.}}",
+    say: "At Tata Steel I supported the Branch Manager in a role close to an assistant's. I handled their documents, some of their emails, and follow-ups with some vendors. {{One example of something you did.}}"
+  },
+  {
+    t: "LinguaVerse", m: "My own build &middot; React, TypeScript, Vite",
+    wall: "An AI translator that cares about culture, not only words. Five pages (Home, Translate, Explore, Community and Pricing), built in React and TypeScript with Vite and routed with wouter.",
+    broke: "I wanted more functionality before I had decided what a visitor should do on the site. \"Add features\" is not a plan. The work stalled.",
+    fix: "I stopped adding. The plan now: pick one feature, write down what a user does with it, and build only that.",
+    say: "LinguaVerse is an AI translator that cares about culture, not just words. It's built in React and TypeScript, with five pages: Home, Translate, Explore, Community and Pricing. Here's what went wrong. I asked for more features before I'd decided what a visitor should actually do on the site. So the work stalled. My next step is simple. Pick one feature, define it first, then build it."
+  }
+];
+
+document.getElementById("startdate").innerHTML = "December 2026";
+
+/* journey */
+function renderStages(sel) {
+  var h = "";
+  STAGES.forEach(function (s, i) {
+    h += '<button type="button" class="stage ' + s.s + '" data-i="' + i + '" aria-pressed="' + (i === sel) + '"><span class="n">' + (s.s === "passed" ? "&#10003;" : i + 1) + "</span>" + s.n + "</button>";
+  });
+  document.getElementById("stages").innerHTML = h;
+  document.getElementById("stagenote").innerHTML = "<b>" + STAGES[sel].n + ".</b> " + chips(STAGES[sel].t);
+}
+document.getElementById("stages").addEventListener("click", function (e) {
+  var b = e.target.closest("button"); if (!b) return;
+  renderStages(+b.getAttribute("data-i"));
+});
+renderStages(2);
+
+/* queue: a chat, one message at a time */
+var qi = 0, qpicks = [];
+function renderQueue() {
+  var el = document.getElementById("queue"), n = MAILS.length, h = "", i, bars = "";
+  if (qi >= n) {
+    var same = 0;
+    MAILS.forEach(function (m, k) { if (qpicks[k] === m.pick) same++; });
+    h += '<div class="result"><span class="label" style="color:var(--indigo)">Queue cleared</span><div class="big">You matched me on <i>' + same + "</i> of " + n + ".</div>";
+    h += "<p>" + (same === n ? "We think alike." : "Where we differ is worth talking about.") + "</p></div>";
+    h += '<div class="tally">';
+    MAILS.forEach(function (m, k) {
+      var ok = qpicks[k] === m.pick;
+      h += "<div><span>" + m.subj + "</span><span>You: " + BUCKETS[qpicks[k]] + '</span><span class="' + (ok ? "ok" : "no") + '">Me: ' + BUCKETS[m.pick] + (ok ? " &#10003;" : "") + "</span></div>";
+    });
+    h += '</div><div class="qfoot"><button type="button" class="btn ghost" data-reset="1">Start over</button></div>';
+    el.innerHTML = h; return;
+  }
+  var m = MAILS[qi], p = qpicks[qi], picked = p !== undefined;
+  for (i = 0; i < n; i++) bars += '<b class="' + (i < qi || (i === qi && picked) ? "done" : i === qi ? "now" : "") + '"></b>';
+  h += '<div class="prog label"><span>Message ' + (qi + 1) + " of " + n + '</span><span class="bars">' + bars + "</span></div>";
+  h += '<div class="msg"><div class="av" aria-hidden="true">@</div><div class="bubble"><span class="label who">' + m.from + "</span><h3>" + m.subj + "</h3><p>" + m.pre + "</p></div></div>";
+  h += '<div class="ask"><span class="label">Where does this go?</span><div class="buckets" role="group" aria-label="Where does this go?">';
+  BUCKETS.forEach(function (b, j) {
+    h += '<button type="button" class="bk" data-j="' + j + '" aria-pressed="' + (p === j) + '"' + (picked ? " disabled" : "") + ">" + b + "</button>";
+  });
+  h += "</div></div>";
+  if (picked) {
+    var ok = p === m.pick;
+    h += '<div class="msg reply"><div class="av me" aria-hidden="true">NB</div><div class="bubble me' + (ok ? " agree" : "") + '"><span class="label who">' + (ok ? "Natasha &middot; We agree" : "Natasha &middot; I would do it differently") + "</span>";
+    h += "<p><b>My pick: " + BUCKETS[m.pick] + ".</b> " + m.why + "</p><p>" + m.next + "</p>";
+    if (m.draft) h += '<div class="draft">' + m.draft + "</div>";
+    h += '</div></div><div class="qfoot"><button type="button" class="btn" data-next="1">' + (qi === n - 1 ? "See how we matched" : "Next message") + "</button></div>";
+  }
+  el.innerHTML = h;
+}
+document.getElementById("queue").addEventListener("click", function (e) {
+  var b = e.target.closest("button"); if (!b) return;
+  if (b.hasAttribute("data-j")) { qpicks[qi] = +b.getAttribute("data-j"); renderQueue(); }
+  else if (b.hasAttribute("data-next")) { qi++; renderQueue(); }
+  else if (b.hasAttribute("data-reset")) { qi = 0; qpicks = []; renderQueue(); }
+});
+renderQueue();
+
+/* fit */
+(function () {
+  var h = "";
+  FIT.forEach(function (f) {
+    h += '<div class="cell ' + f.c + '"><span class="stamp">' + f.l + "</span><h3>" + f.t + "</h3><p>" + chips(f.e) + "</p></div>";
+  });
+  document.getElementById("fit").innerHTML = h;
+})();
+
+/* objections */
+(function () {
+  var h = "";
+  OBJ.forEach(function (o, i) {
+    h += "<details" + (i === 0 ? " open" : "") + "><summary>" + o.q + '</summary><div class="body"><p>' + chips(o.a) + "</p></div></details>";
+  });
+  document.getElementById("objections").innerHTML = h;
+})();
+
+/* activity tabs */
+var tabIx = 0;
+function renderTabs() {
+  var t = "", a = ACT[tabIx];
+  ACT.forEach(function (x, i) {
+    t += '<button type="button" class="tab" role="tab" data-t="' + i + '" aria-selected="' + (i === tabIx) + '">' + x.t + "</button>";
+  });
+  document.getElementById("tabs").innerHTML = t;
+  var h = "<h3>" + a.t + '</h3><div class="meta label">' + a.m + "</div><p>" + chips(a.wall) + "</p>";
+  h += '<div class="pair"><div class="box broke"><h4>What broke</h4><p>' + chips(a.broke) + '</p></div><div class="box"><h4>What I did next</h4><p>' + chips(a.fix) + "</p></div></div>";
+  h += '<div class="say"><div class="row"><span class="label">Say this &middot; about 30 seconds</span><button type="button" class="btn ghost" data-copy="1">Copy script</button></div><p id="say-text">' + chips(a.say) + "</p></div>";
+  document.getElementById("panel").innerHTML = h;
+}
+document.getElementById("tabs").addEventListener("click", function (e) {
+  var b = e.target.closest("button.tab"); if (!b) return;
+  tabIx = +b.getAttribute("data-t"); renderTabs();
+});
+document.getElementById("panel").addEventListener("click", function (e) {
+  var b = e.target.closest("button[data-copy]"); if (!b) return;
+  function fallback() {
+    var range = document.createRange();
+    range.selectNodeContents(document.getElementById("say-text"));
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+    b.textContent = "Selected. Press copy.";
+  }
+  try { navigator.clipboard.writeText(plain(ACT[tabIx].say)).then(function () { b.textContent = "Copied"; }, fallback); } catch (err) { fallback(); }
+  setTimeout(function () { b.textContent = "Copy script"; }, 2200);
+});
+renderTabs();
+</script>
+
+</body>
+</html>
