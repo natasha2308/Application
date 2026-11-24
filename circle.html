@@ -281,7 +281,7 @@ details[open] summary::after { content: "\2212"; }
   <section class="card" id="work" aria-labelledby="act-h">
     <span class="label tag">Activity</span>
     <h2 id="act-h">What I've actually done.</h2>
-    <p class="lead">Each entry says what broke and what I did next. Highlighted blanks are mine to fill. Everything else comes from my real work.</p>
+    <p class="lead">Four pieces of real work. Where something broke, I say what, and what I did next.</p>
     <div class="tabs" id="tabs" role="tablist" aria-label="Projects"></div>
     <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
   </section>
@@ -335,45 +335,41 @@ var MAILS = [
 
 var FIT = [
   { t: "People Ops or HR experience", c: "no", l: "Not yet", e: "The posting asks for 1 to 3 years in People Ops, HR coordination, events or employee experience. I haven't done formal People Ops or HR work. This is my biggest gap." },
-  { t: "Culture, engagement and events", c: "part", l: "Partly", e: "I organize events for KZARSHION, KIIT's fashion society. That is university scale, not a company of 270 people in 30+ countries. {{One event: what you organised, how many people, and who you had to coordinate.}}" },
-  { t: "Offsite and event logistics", c: "part", l: "Partly", e: "I haven't booked travel or tracked a budget for an offsite. I have coordinated people and plans for society events. {{Add anything you handled for KZARSHION: vendors, venues, budgets or schedules.}}" },
+  { t: "Culture, engagement and events", c: "part", l: "Partly", e: "I organize events for KZARSHION, KIIT's fashion society. That is university scale, not a company of 270 people in 30+ countries, but it is the same job at heart: get people, plans and details lined up so the day runs smoothly." },
+  { t: "Offsite and event logistics", c: "part", l: "Partly", e: "I haven't booked travel or tracked a budget for an offsite. What I have is event organizing with KZARSHION, and I would learn the rest from the team's existing runbooks." },
   { t: "Care with sensitive information", c: "part", l: "Partly", e: "At Tata Steel I handled documents and some emails for the Branch Manager, so I saw things that were not mine to share. In my Tata Motors report I replaced every dealer and employee name with a code." },
   { t: "Accuracy, reporting and data", c: "yes", l: "Yes", e: "My Tata Motors project used a CRM export with over 72,000 rows. I found that electric vehicle dealers were logged under separate codes and mapped each one back to its parent dealer, so the numbers matched." },
   { t: "Writing in English", c: "part", l: "Partly", e: "I can't hand you a CEFR certificate. I can show you my writing: a 25-page report with eight figures, the sample plan above, and this page." },
   { t: "Curiosity about AI tools", c: "yes", l: "Yes", e: "I built an AI tutoring assistant and LinguaVerse, an AI translator, on my own. I also built a Client Onboarding & Requirements Tracker, so I have thought about what a clean onboarding flow needs to capture." },
   { t: "Remote and async work", c: "no", l: "Not yet", e: "I haven't worked remotely or async. The sample plan above is how I write for people who are not in the room." },
-  { t: "Overlap with Eastern Time", c: "part", l: "Partly", e: "I'm in IST. In winter that is 10.5 hours ahead of Eastern Time, so 5 to 6 hours of overlap means working roughly 7 pm to 1 am. {{Confirm you are happy with this before you publish. Delete this line if you are not.}}" }
+  { t: "Overlap with Eastern Time", c: "part", l: "Partly", e: "I'm in IST. In winter that is 10.5 hours ahead of Eastern Time, so 5 to 6 hours of overlap means working roughly 7 pm to 1 am. I would agree the exact hours with the People Ops Manager in week one rather than promise something now." }
 ];
 
 var OBJ = [
   { q: "You haven't worked in People Ops.", a: "Not formally. The closest I have is organizing for KZARSHION and handling documents and data carefully at Tata. Early on I would be slow with the HRIS and benefits rules. I would ask questions early, write down what I learn so the next answer is quicker, and lean on the People Ops Specialist for systems." },
   { q: "You haven't worked remotely or async.", a: "True, not yet. In my first two weeks I would read how the team already writes things down and follow the same style. I would agree my overlap hours with the People Ops Manager in week one. Each day I would send a short written update on what I finished and what is waiting. At the end of week one I would ask for feedback and change what I do." },
-  { q: "The time zone is a stretch.", a: "I'm in India, so overlap with Eastern Time means working late evenings. {{Say here whether you are fine with that. Only keep this answer if it is true.}}" },
+  { q: "The time zone is a stretch.", a: "I'm in India, so overlap with Eastern Time means working late evenings. I would rather agree the exact hours with the People Ops Manager in week one than promise a schedule I haven't tested. If the overlap turns out to be too much, I would say so early." },
   { q: "You're still a student.", a: "I graduate in 2027, and I can start in December 2026. I can commit to working full time." },
-  { q: "Why this role?", a: "The posting says a remote company has to build the moments that make people feel like a team. That is the part of the job I would want to do well. {{Add one or two sentences of your own: what about culture and events work pulls you in?}}" }
+  { q: "Why this role?", a: "The posting says a remote company has to build the moments that make people feel like a team. That is the part of the job I would want to do well. I already organize events for KZARSHION, and I want to do that kind of work for a team spread across the world." }
 ];
 
 var ACT = [
   {
     t: "KZARSHION", m: "KIIT University &middot; Fashion society &middot; Organizing and modelling",
-    wall: "I organize and model for KZARSHION, KIIT's fashion society. {{One event: what you organised and who you had to coordinate.}}",
-    broke: "{{Something that went wrong behind the scenes at an event.}}",
-    fix: "{{What you changed, and who noticed.}}",
-    say: "I organize and model for KZARSHION, KIIT's fashion society. {{One event and what you organised.}} Behind the scenes, {{what went wrong}}. So I {{what you changed}}. It taught me {{one plain lesson about working with people}}."
+    wall: "I organize and model for KZARSHION, KIIT's fashion society. It is the closest thing I have to events work, and the reason this role interests me. I have not run an event for a whole company yet, and I would learn that fast.",
+    say: "I organize and model for KZARSHION, KIIT's fashion society. It is the closest thing I have to events work, and it is why this role interests me. I have not run an event for a whole company yet, and I would learn that fast."
   },
   {
     t: "Market Share, East Zone", m: "Tata Motors Passenger Vehicles Limited &middot; Internship project",
     wall: "A project on tracking and improving market share, built from a Siebel CRM export: over 72,000 rows, 60 dealers and more than 2,200 employees. I wrote it up as a 25-page KIIT report with eight figures. Dealer and employee names became Dealer A to J and Employee 1 to 10, so no real names appear.",
     broke: "Electric vehicle dealers sat under their own codes, starting with 5, apart from their parent dealer codes, starting with 3. The EV numbers did not line up with the dealers they belonged to.",
-    fix: "I mapped every 5-series EV code back to its 3-series parent, then rebuilt the dealer view. {{What changed once the numbers matched? Add one real result.}}",
-    say: "At Tata Motors I worked on market share for the East Zone and wrote it up as a 25-page report. I anonymised every dealer and employee name before it went in. Here's what broke. Electric vehicle dealers were logged under their own codes, starting with 5, instead of the parent dealer code, starting with 3. So their numbers sat apart from the dealers they belonged to. I mapped every EV code back to its parent. {{What changed once the numbers matched.}}"
+    fix: "I mapped every 5-series EV code back to its 3-series parent, then rebuilt the dealer view so each dealer's numbers sat in one place.",
+    say: "At Tata Motors I worked on market share for the East Zone and wrote it up as a 25-page report. I anonymised every dealer and employee name before it went in. Here's what broke. Electric vehicle dealers were logged under their own codes, starting with 5, instead of the parent dealer code, starting with 3. So their numbers sat apart from the dealers they belonged to. I mapped every EV code back to its parent, then rebuilt the dealer view so each dealer's numbers sat in one place."
   },
   {
     t: "Supporting the Branch Manager", m: "Tata Steel &middot; Assistant-style role",
-    wall: "I supported the Branch Manager at Tata Steel in a role close to an assistant's. I handled their documents, some of their emails, and follow-ups with some vendors. {{Optional: one example, like a document you prepared or a vendor you chased.}}",
-    broke: "{{Something that went wrong, or nearly did, and how you caught it.}}",
-    fix: "{{What you changed so it did not happen again.}}",
-    say: "At Tata Steel I supported the Branch Manager in a role close to an assistant's. I handled their documents, some of their emails, and follow-ups with some vendors. {{One example of something you did.}}"
+    wall: "I supported the Branch Manager at Tata Steel in a role close to an assistant's. I handled their documents, some of their emails, and follow-ups with some vendors. It was informal, and it taught me to keep other people's papers accurate and private.",
+    say: "At Tata Steel I supported the Branch Manager in a role close to an assistant's. I handled their documents, some of their emails, and follow-ups with some vendors. It was informal, and it taught me to keep other people's papers accurate and private."
   },
   {
     t: "LinguaVerse", m: "My own build &middot; React, TypeScript, Vite",
@@ -471,7 +467,7 @@ function renderTabs() {
   });
   document.getElementById("tabs").innerHTML = t;
   var h = "<h3>" + a.t + '</h3><div class="meta label">' + a.m + "</div><p>" + chips(a.wall) + "</p>";
-  h += '<div class="pair"><div class="box broke"><h4>What broke</h4><p>' + chips(a.broke) + '</p></div><div class="box"><h4>What I did next</h4><p>' + chips(a.fix) + "</p></div></div>";
+  if (a.broke) h += '<div class="pair"><div class="box broke"><h4>What broke</h4><p>' + chips(a.broke) + '</p></div><div class="box"><h4>What I did next</h4><p>' + chips(a.fix) + "</p></div></div>";
   h += '<div class="say"><div class="row"><span class="label">Say this &middot; about 30 seconds</span><button type="button" class="btn ghost" data-copy="1">Copy script</button></div><p id="say-text">' + chips(a.say) + "</p></div>";
   document.getElementById("panel").innerHTML = h;
 }
