@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natasha, Fintech</title>
+<meta name="description" content="Natasha, final-year B.Tech student, seeking backend business operations roles at fintechs.">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+body{margin:0}
+/* Concept: the whole site is a bank statement addressed to the hiring team. Entries are posted to a ledger (Dr = what I still owe, Cr = what I bring). The first thing a visitor does is audit a mini reconciliation and find the break. Solving it unlocks the contact line. */
+.root{--desk:#0F1C18;--paper:#EDF2EE;--ink:#10231C;--mute:#566A60;--rule:#BCCBC1;--faint:#DCE6DF;--red:#C23B3B;--stamp:#1F4FD8;--ok:#0E7A55;--amber:#B97A00}
+.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+.cap{margin:0;font:500 11px/1.3 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.hd{margin:0;font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;text-wrap:balance}
+a:focus-visible,label:focus-within{outline:2px solid var(--stamp);outline-offset:3px}
+
+.sheet{position:relative;max-width:1180px;margin:0 auto;box-sizing:border-box;background:var(--paper);background-image:linear-gradient(to right,transparent 71px,var(--red) 71px,var(--red) 72px,transparent 72px,transparent 76px,var(--red) 76px,var(--red) 77px,transparent 77px);padding:0 48px 56px 108px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+@media (max-width:760px){.sheet{padding:0 16px 40px 44px;background-image:linear-gradient(to right,transparent 29px,var(--red) 29px,var(--red) 30px,transparent 30px,transparent 33px,var(--red) 33px,var(--red) 34px,transparent 34px)}}
+.perf{height:14px;background:radial-gradient(circle at 7px 0,var(--desk) 6px,transparent 7px) 0 0/14px 14px repeat-x}
+
+@keyframes in{from{opacity:0;transform:translateY(14px)}}
+@keyframes stamp{0%{opacity:0;transform:rotate(-14deg) scale(2.4)}60%{opacity:1;transform:rotate(-8deg) scale(.94)}100%{opacity:1;transform:rotate(-8deg) scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+@keyframes blink{50%{opacity:.25}}
+@keyframes wipe{from{clip-path:inset(0 100% 0 0)}}
+@keyframes grow{from{transform:scaleY(0)}}
+.in{animation:in .8s cubic-bezier(.2,.7,.1,1) backwards}
+
+/* top strip */
+.strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding:22px 0 18px;border-bottom:2px solid var(--ink)}
+.btn{display:inline-flex;align-items:center;min-height:42px;padding:0 18px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);font:600 13px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:background-color .2s ease,color .2s ease,transform .2s ease}
+.btn:hover{background:transparent;color:var(--ink);transform:translateY(-2px)}
+
+/* title block */
+.title{display:flex;flex-wrap:wrap;gap:28px 48px;padding:44px 0 36px;align-items:flex-end;justify-content:space-between}
+.acct{flex:0 1 380px;min-width:0;border:2px solid var(--ink)}
+.acct div{display:flex;justify-content:space-between;gap:16px;padding:9px 14px;border-bottom:1px solid var(--rule);font:500 13px/1.4 'IBM Plex Mono',monospace}
+.acct div:last-child{border-bottom:0}
+.acct span:first-child{color:var(--mute);text-transform:uppercase;letter-spacing:.08em;font-size:11px;padding-top:2px}
+.acct span:last-child{text-align:right;min-width:0;overflow-wrap:anywhere}
+
+/* audit game */
+.audit{position:relative;border:2px solid var(--ink);background:#F7FAF8}
+.vh{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.ah{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;padding:12px 16px;background:var(--ink);color:var(--paper)}
+.ah .cap{color:#9DB5A8}
+.ar{display:flex;align-items:center;gap:14px;padding:14px 16px;border-top:1px solid var(--rule);cursor:pointer;font:500 15px/1.3 'IBM Plex Mono',monospace;transition:background-color .2s ease,padding-left .25s ease}
+.ar:hover{background:var(--faint);padding-left:24px}
+.ar>span:nth-child(1){flex:0 0 84px}
+.ar>span:nth-child(2){flex:1 1 90px;text-align:right}
+.ar>span:nth-child(3){flex:1 1 90px;text-align:right}
+.ar>span:nth-child(4){flex:0 0 28px;text-align:center;color:var(--ok);font-weight:700;visibility:hidden}
+.colh{display:flex;gap:14px;padding:10px 16px}
+.colh span:nth-child(1){flex:0 0 84px}.colh span:nth-child(2){flex:1 1 90px;text-align:right}.colh span:nth-child(3){flex:1 1 90px;text-align:right}.colh span:nth-child(4){flex:0 0 28px}
+.res{padding:16px;border-top:2px solid var(--ink);min-height:72px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.res p{margin:0}
+.res .ok,.res .no,.res .big{display:none}
+.res .hint{display:flex;align-items:center;gap:10px;font:500 14px/1.4 'IBM Plex Mono',monospace;color:var(--mute)}
+.res .hint i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--amber);animation:blink 1.4s steps(2) infinite}
+/* any pick hides the hint */
+.audit input:checked ~ .res .hint{display:none}
+/* wrong picks */
+#a1:checked ~ .res .no,#a2:checked ~ .res .no,#a4:checked ~ .res .no,#a5:checked ~ .res .no,#a6:checked ~ .res .no{display:block;color:var(--red);font:600 14px/1.4 'IBM Plex Mono',monospace}
+#a1:checked ~ .rows label[for=a1],#a2:checked ~ .rows label[for=a2],#a4:checked ~ .rows label[for=a4],#a5:checked ~ .rows label[for=a5],#a6:checked ~ .rows label[for=a6]{background:#F6DADA;animation:shake .45s ease}
+#a1:checked ~ .rows label[for=a1] span:nth-child(4),#a2:checked ~ .rows label[for=a2] span:nth-child(4),#a4:checked ~ .rows label[for=a4] span:nth-child(4),#a5:checked ~ .rows label[for=a5] span:nth-child(4),#a6:checked ~ .rows label[for=a6] span:nth-child(4){visibility:visible;color:var(--red)}
+/* the right pick */
+#a3:checked ~ .rows label[for=a3]{background:#D5EFE3}
+#a3:checked ~ .rows label[for=a3] span:nth-child(4){visibility:visible}
+#a3:checked ~ .res .ok{display:block}
+#a3:checked ~ .res .big{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;justify-content:space-between;margin-top:6px}
+#a3:checked ~ .stamp{display:flex}
+.ok{font:600 15px/1.45 'IBM Plex Mono',monospace;color:var(--ok)}
+.stamp{display:none;position:absolute;right:20px;top:44px;padding:8px 16px;border:3px solid var(--stamp);color:var(--stamp);font:700 22px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;background:rgba(237,242,238,.85);transform:rotate(-8deg);animation:stamp .5s cubic-bezier(.2,.8,.3,1) both;pointer-events:none}
+.lock{display:inline-flex;align-items:center;min-height:42px;padding:0 16px;border:2px dashed var(--mute);color:var(--mute);font:500 13px/1 'IBM Plex Mono',monospace}
+
+/* ledger */
+.ledger{margin-top:12px}
+.lh,.le{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline}
+.lh{padding:12px 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink)}
+.le{padding:20px 0;border-bottom:1px solid var(--rule);transition:background-color .25s ease,padding-left .3s ease}
+.le:hover{background:var(--faint);padding-left:10px}
+.c1{flex:0 0 56px}.c2{flex:0 0 78px}.c3{flex:1 1 280px;min-width:0}.c4{flex:1 1 150px;min-width:0}.c5{flex:1 1 150px;min-width:0}.c6{flex:0 0 70px;text-align:right}
+.le .c3 b{display:block;font:600 19px/1.25 'IBM Plex Sans Condensed',sans-serif;letter-spacing:-.005em}
+.le .c3 span{display:block;margin-top:4px;color:var(--mute);font-size:14px}
+.le .c1,.le .c2,.le .c4,.le .c5,.le .c6{font:400 13px/1.45 'IBM Plex Mono',monospace}
+.le .c4{color:var(--red)}
+.le .c5{color:var(--ok)}
+.le .c6{font-weight:600}
+@media (max-width:860px){.lh .c1,.lh .c2,.lh .c4,.lh .c5,.lh .c6{display:none}.lh .c3{flex-basis:100%}}
+.link{display:block;color:inherit;text-decoration:none}
+
+/* working note */
+.wk{width:100%;border-collapse:collapse;font:500 14px/1.4 'IBM Plex Mono',monospace}
+.wkw{overflow-x:auto;border:2px solid var(--ink);background:#F7FAF8}
+.wk th{padding:10px 16px;text-align:right;background:var(--ink);color:var(--paper);font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.wk td{padding:11px 16px;text-align:right;border-top:1px solid var(--rule)}
+.wk th:first-child,.wk td:first-child{text-align:left}
+.bar{display:block;height:8px;background:var(--stamp);transform-origin:left;margin-left:auto}
+.wk tr.sum td{border-top:2px solid var(--ink);font-weight:600;background:var(--faint)}
+
+/* closing */
+.close{display:flex;flex-wrap:wrap;gap:32px 56px;align-items:flex-end;justify-content:space-between;padding:36px 0 8px}
+.ln{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--rule);color:var(--ink);text-decoration:none;transition:color .2s ease,padding-left .25s ease}
+.ln:hover{color:var(--stamp);padding-left:8px}
+.ln .k{flex:0 0 84px;font:500 11px/1.4 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.ln .v{flex:1 1 180px;min-width:0;font:600 15px/1.4 'IBM Plex Mono',monospace;overflow-wrap:anywhere}
+.sec{padding-top:56px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+</head>
+<body>
+
+
+
+<div class="root" style="width:100%;background:var(--desk);padding:0 0 0;box-sizing:border-box;color:var(--ink);font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden">
+<div class="perf" style="background-color:var(--desk)"></div>
+<div style="padding:0 16px 56px;box-sizing:border-box">
+<div class="sheet">
+
+<header class="strip">
+<p class="cap" style="color:var(--ink)">Statement of account / Page 1 of 1</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px"><a class="btn" href="https://github.com/natasha2308" style="background:var(--stamp);border-color:var(--stamp)">My projects</a><a class="btn" href="#contact">Contact</a></div>
+</header>
+
+<section class="title">
+<div class="in" style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:22px">
+<p class="cap">Prepared for: the hiring team</p>
+<h1 class="hd" style="font-size:clamp(54px,9vw,124px)">Natasha<br><span style="color:var(--stamp)">Bag</span></h1>
+<p style="margin:0;max-width:46ch;font-size:19px;line-height:1.5;color:var(--ink)">Final-year B.Tech student looking for backend business operations work at a fintech. This page is a statement. What I bring is posted as credits. What I still have to learn is posted as debits. Nothing is hidden in the small print.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px"><a class="btn" href="https://github.com/natasha2308" style="background:var(--stamp);border-color:var(--stamp);color:#fff">See my projects on GitHub</a><a class="btn" href="#ledger-h" style="background:transparent;color:var(--ink)">Read the ledger</a></div>
+</div>
+<div class="acct in" style="animation-delay:.2s">
+<div><span>Account holder</span><span>Natasha</span></div>
+<div><span>Programme</span><span>B.Tech, Electronics and CS</span></div>
+<div><span>Institution</span><span>KIIT, Bhubaneswar</span></div>
+<div><span>Period</span><span>2023 to Dec 2026</span></div>
+<div><span>Based in</span><span>Kolkata</span></div>
+<div><span>Closing balance</span><span style="color:var(--ok);font-weight:600">Ready to start Dec 2026</span></div>
+</div>
+</section>
+
+<section aria-labelledby="audit-h">
+<p class="cap" style="margin-bottom:10px">Before you read on, a quick audit</p>
+<h2 id="audit-h" class="hd" style="font-size:clamp(30px,4vw,48px);margin-bottom:18px">Find the break</h2>
+<p style="margin:0 0 18px;max-width:58ch;color:var(--mute);font-size:17px">Reconciliation means checking two records against each other. Five of these six lines agree. One does not. Click it.</p>
+
+<div class="audit">
+<input class="vh" type="radio" name="a" id="a1" aria-label="INV-204">
+<input class="vh" type="radio" name="a" id="a2" aria-label="INV-205">
+<input class="vh" type="radio" name="a" id="a3" aria-label="INV-206">
+<input class="vh" type="radio" name="a" id="a4" aria-label="PAY-118">
+<input class="vh" type="radio" name="a" id="a5" aria-label="PAY-119">
+<input class="vh" type="radio" name="a" id="a6" aria-label="PAY-120">
+<div class="ah"><span class="cap">Sample data</span><span class="cap">Books against bank</span></div>
+<div class="colh cap"><span>Entry</span><span>Books</span><span>Bank</span><span></span></div>
+<div class="rows">
+<label class="ar" for="a1"><span>INV-204</span><span>1,200.00</span><span>1,200.00</span><span>✓</span></label>
+<label class="ar" for="a2"><span>INV-205</span><span>450.00</span><span>450.00</span><span>✓</span></label>
+<label class="ar" for="a3"><span>INV-206</span><span>860.00</span><span>806.00</span><span>✓</span></label>
+<label class="ar" for="a4"><span>PAY-118</span><span>3,000.00</span><span>3,000.00</span><span>✓</span></label>
+<label class="ar" for="a5"><span>PAY-119</span><span>75.50</span><span>75.50</span><span>✓</span></label>
+<label class="ar" for="a6"><span>PAY-120</span><span>2,310.00</span><span>2,310.00</span><span>✓</span></label>
+</div>
+<div class="res">
+<p class="hint"><i></i>Waiting for you to pick a line.</p>
+<p class="no">These two agree. Look at the digits again.</p>
+<p class="ok">Found it. 860.00 in the books, 806.00 at the bank. Two digits swapped, a difference of 54.00. A classic transposition error.</p>
+<div class="big"><span class="mono" style="font-size:13px;color:var(--mute)">That is how I like to work. Compare, find the gap, say who owns it.</span><a class="btn" href="mailto:natashabag2005@gmail.com">Email Natasha</a></div>
+</div>
+<div class="stamp">RECONCILED</div>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="ledger-h">
+<p class="cap" style="margin-bottom:10px">General ledger</p>
+<h2 id="ledger-h" class="hd" style="font-size:clamp(30px,4vw,48px);margin-bottom:10px">Entries posted</h2>
+<p style="margin:0 0 20px;max-width:58ch;color:var(--mute);font-size:17px">Dr is what I still owe: gaps and work in progress. Cr is what I can already show. The tally counts credits only.</p>
+
+<div class="ledger">
+<div class="lh cap"><span class="c1">Ref</span><span class="c2">Type</span><span class="c3">Particulars</span><span class="c4">Dr</span><span class="c5">Cr</span><span class="c6">Tally</span></div>
+
+<a class="link" href="#contact">
+<div class="le in" style="animation-delay:0.1s">
+<span class="c1">E-01</span><span class="c2">Study</span>
+<span class="c3"><b>Mahadevi Birla World Academy</b><span>School in Kolkata.</span></span>
+<span class="c4"></span><span class="c5">School</span><span class="c6">01</span>
+</div>
+</a>
+
+<a class="link" href="#contact">
+<div class="le in" style="animation-delay:0.17s">
+<span class="c1">E-02</span><span class="c2">Study</span>
+<span class="c3"><b>KIIT University, B.Tech Electronics and CS</b><span>Batch of 2023 to 2027. Financial Management, Engineering Economics, Computer Networks.</span></span>
+<span class="c4"></span><span class="c5">Degree, in final year</span><span class="c6">02</span>
+</div>
+</a>
+
+<a class="link" href="https://www.linkedin.com/in/natasha-bag-6038292a6">
+<div class="le in" style="animation-delay:0.24000000000000002s">
+<span class="c1">E-03</span><span class="c2">Cert</span>
+<span class="c3"><b>Certificates</b><span>Scaler (React, SQL, ML), freeCodeCamp (Python data analysis), IBM Data Science, Coursera Business Analytics, Cursa (Flask, Postman, FastAPI).</span></span>
+<span class="c4"></span><span class="c5">5 providers</span><span class="c6">03</span>
+</div>
+</a>
+
+<a class="link" href="#contact">
+<div class="le in" style="animation-delay:0.31000000000000005s">
+<span class="c1">E-04</span><span class="c2">Work</span>
+<span class="c3"><b>Tata Steel Mining, internship</b><span>Video analytics.</span></span>
+<span class="c4"></span><span class="c5">Analytics</span><span class="c6">04</span>
+</div>
+</a>
+
+<a class="link" href="#contact">
+<div class="le in" style="animation-delay:0.38s">
+<span class="c1">E-05</span><span class="c2">Work</span>
+<span class="c3"><b>Tata Motors Passenger Vehicles, East Zone, internship</b><span>Market share tracking and improvement. CRM data on passenger and electric vehicle retail funnels across dealers.</span></span>
+<span class="c4"></span><span class="c5">Reporting, CRM data</span><span class="c6">05</span>
+</div>
+</a>
+
+<a class="link" href="https://github.com/natasha2308">
+<div class="le in" style="animation-delay:0.45000000000000007s">
+<span class="c1">E-06</span><span class="c2">Build</span>
+<span class="c3"><b>Inventory Management System</b><span>A project I built on my own. Stock in, stock out, and what needs reordering.</span></span>
+<span class="c4"></span><span class="c5">Built</span><span class="c6">06</span>
+</div>
+</a>
+
+<a class="link" href="https://github.com/natasha2308">
+<div class="le in" style="animation-delay:0.52s">
+<span class="c1">E-07</span><span class="c2">Build</span>
+<span class="c3"><b>Client Onboarding and Requirements Tracker</b><span>A project I built on my own. One place for a new client and what they need.</span></span>
+<span class="c4"></span><span class="c5">Built</span><span class="c6">07</span>
+</div>
+</a>
+
+<a class="link" href="https://github.com/natasha2308">
+<div class="le in" style="animation-delay:0.5900000000000001s">
+<span class="c1">E-08</span><span class="c2">Build</span>
+<span class="c3"><b>Personalised AI Tutoring Assistant</b><span>A project I built on my own.</span></span>
+<span class="c4"></span><span class="c5">Built</span><span class="c6">08</span>
+</div>
+</a>
+
+<a class="link" href="#contact">
+<div class="le in" style="animation-delay:0.66s">
+<span class="c1">E-09</span><span class="c2">Society</span>
+<span class="c3"><b>KZARSHION, KIIT fashion society</b><span>Organizing events and keeping organizers, members and partners talking.</span></span>
+<span class="c4"></span><span class="c5">Coordination</span><span class="c6">09</span>
+</div>
+</a>
+
+<a class="link" href="#contact">
+<div class="le in" style="animation-delay:0.7300000000000001s">
+<span class="c1">E-10</span><span class="c2">To do</span>
+<span class="c3"><b>Reconciliation in a live finance team</b><span>I understand the idea and the SQL. I have not done it in production yet.</span></span>
+<span class="c4">Learn on day one</span><span class="c5"></span><span class="c6"></span>
+</div>
+</a>
+
+<a class="link" href="#contact">
+<div class="le in" style="animation-delay:0.8s">
+<span class="c1">E-11</span><span class="c2">To do</span>
+<span class="c3"><b>CCNA</b><span>Networking certification.</span></span>
+<span class="c4">In progress</span><span class="c5"></span><span class="c6"></span>
+</div>
+</a>
+
+</div>
+</section>
+
+<section class="sec" aria-labelledby="wk-h">
+<p class="cap" style="margin-bottom:10px">Working note 1</p>
+<h2 id="wk-h" class="hd" style="font-size:clamp(30px,4vw,48px);margin-bottom:10px">What 1,000 a year is worth today</h2>
+<p style="margin:0 0 20px;max-width:58ch;color:var(--mute);font-size:17px">From my Financial Management and Engineering Economics coursework. Five yearly receipts of 1,000, discounted at 10 percent. NPV = Σ Cₜ / (1 + r)ᵗ.</p>
+<div class="wkw">
+<table class="wk">
+<thead><tr><th>Year</th><th>Cash</th><th>Factor</th><th>Present value</th><th style="width:30%">&nbsp;</th></tr></thead>
+<tbody>
+
+<tr><td>Year 1</td><td>1,000.00</td><td>0.9091</td><td>909.09</td><td><i class="bar" style="width:100%;animation:wipe 1.2s cubic-bezier(.2,.7,.1,1) 0.2s backwards"></i></td></tr>
+
+<tr><td>Year 2</td><td>1,000.00</td><td>0.8264</td><td>826.45</td><td><i class="bar" style="width:91%;animation:wipe 1.2s cubic-bezier(.2,.7,.1,1) 0.35s backwards"></i></td></tr>
+
+<tr><td>Year 3</td><td>1,000.00</td><td>0.7513</td><td>751.31</td><td><i class="bar" style="width:83%;animation:wipe 1.2s cubic-bezier(.2,.7,.1,1) 0.5s backwards"></i></td></tr>
+
+<tr><td>Year 4</td><td>1,000.00</td><td>0.6830</td><td>683.01</td><td><i class="bar" style="width:75%;animation:wipe 1.2s cubic-bezier(.2,.7,.1,1) 0.6499999999999999s backwards"></i></td></tr>
+
+<tr><td>Year 5</td><td>1,000.00</td><td>0.6209</td><td>620.92</td><td><i class="bar" style="width:68%;animation:wipe 1.2s cubic-bezier(.2,.7,.1,1) 0.8s backwards"></i></td></tr>
+
+<tr class="sum"><td>Total</td><td>5,000.00</td><td></td><td>3,790.79</td><td></td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="tools-h">
+<p class="cap" style="margin-bottom:10px">Schedule of tools</p>
+<h2 id="tools-h" class="hd" style="font-size:clamp(30px,4vw,48px);margin-bottom:20px">What I work with</h2>
+<div style="display:flex;flex-wrap:wrap;gap:0 40px">
+<div style="flex:1 1 220px;min-width:0;border-top:2px solid var(--ink);padding:14px 0 18px"><p class="cap" style="margin-bottom:8px;color:var(--ink)">Data</p><p class="mono" style="margin:0;font-size:14px;line-height:1.7">SQL, Python, data analysis, machine learning, CRM data</p></div>
+<div style="flex:1 1 220px;min-width:0;border-top:2px solid var(--ink);padding:14px 0 18px"><p class="cap" style="margin-bottom:8px;color:var(--ink)">Build</p><p class="mono" style="margin:0;font-size:14px;line-height:1.7">React, Flask, FastAPI, Postman</p></div>
+<div style="flex:1 1 220px;min-width:0;border-top:2px solid var(--ink);padding:14px 0 18px"><p class="cap" style="margin-bottom:8px;color:var(--ink)">Finance</p><p class="mono" style="margin:0;font-size:14px;line-height:1.7">NPV, IRR, WACC, B-C ratio, present worth, depreciation methods, Walter's model</p></div>
+<div style="flex:1 1 220px;min-width:0;border-top:2px solid var(--ink);padding:14px 0 18px"><p class="cap" style="margin-bottom:8px;color:var(--ink)">Networks</p><p class="mono" style="margin:0;font-size:14px;line-height:1.7">Computer Networks, CCNA in progress</p></div>
+</div>
+</section>
+
+<section id="contact" class="sec" aria-labelledby="close-h">
+<p class="cap" style="margin-bottom:10px">Closing balance</p>
+<h2 id="close-h" class="hd" style="font-size:clamp(40px,7vw,96px)">Ready to start<br><span style="color:var(--stamp)">December 2026</span></h2>
+<div class="close">
+<p style="flex:1 1 320px;max-width:44ch;margin:0;font-size:19px;line-height:1.5">If you run business operations at a fintech and have room for someone who checks the numbers twice, write to me. I reply quickly.</p>
+<div style="flex:1 1 420px;min-width:0;border-top:2px solid var(--ink)">
+<a class="ln" href="mailto:natashabag2005@gmail.com"><span class="k">Email</span><span class="v">natashabag2005@gmail.com</span></a>
+<a class="ln" href="https://www.linkedin.com/in/natasha-bag-6038292a6"><span class="k">LinkedIn</span><span class="v">linkedin.com/in/natasha-bag-6038292a6</span></a>
+<a class="ln" href="https://github.com/natasha2308"><span class="k">Projects</span><span class="v">github.com/natasha2308</span></a>
+</div>
+</div>
+<p class="cap" style="margin-top:40px">End of statement. Sample figures on this page are illustrations.</p>
+</section>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>
